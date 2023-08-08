@@ -25,12 +25,22 @@ public class AppUser {
     @Column( name = "profileimg ")
     private String profileImg;
 
-    public Long getId() {
-        return id;
+    public AppUser() {
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public AppUser(String name, String lastname, String email,
+                   String passwordHash, LocalDate registeredAt,
+                   LocalDateTime lastLogin) {
+        this.name = name;
+        this.lastname = lastname;
+        this.email = email;
+        this.passwordHash = passwordHash;
+        this.registeredAt = registeredAt;
+        this.lastLogin = lastLogin;
+    }
+
+    public Long getId() {
+        return id;
     }
 
     public String getName() {

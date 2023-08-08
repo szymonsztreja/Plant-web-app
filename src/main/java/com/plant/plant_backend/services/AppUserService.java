@@ -4,9 +4,12 @@ import com.plant.plant_backend.data.dtos.AppUserDTOMapper;
 import com.plant.plant_backend.data.dao.AppUserDao;
 import com.plant.plant_backend.data.dtos.AppUserDto;
 import com.plant.plant_backend.data.model.AppUser;
+import com.plant.plant_backend.requests.AppUserRegistrationRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -35,12 +38,18 @@ public class AppUserService{
                 .collect(Collectors.toList());
     }
 
-    public void save(AppUserDto appUserDto) {
-        if ( appUserDao.existsAppUserWithEmail(appUserDto.getEmail())) {
+    public void save(AppUserRegistrationRequest registrationRequest) {
+        if ( appUserDao.existsAppUserWithEmail(registrationRequest.email() )) {
             throw new RuntimeException();
         }
 
-        AppUser newAppUser = appUserDTOMapper.mapToEntity(appUserDto);
+        AppUser newAppUser = new AppUser(
+                registrationRequest.name(),
+                registrationRequest.lastname(),
+                registrationRequest.email(),
+                registrationRequest.password(),
+                LocalDate.now(),
+                LocalDateTime.now());
         appUserDao.save(newAppUser);
     }
 

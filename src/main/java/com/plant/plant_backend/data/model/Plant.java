@@ -18,6 +18,14 @@ public class Plant {
     @JoinColumn(name = "owner_id")
     private AppUser owner;
 
+    public Plant() {
+    }
+
+    public Plant(String name, String latinName) {
+        this.name = name;
+        this.latinName = latinName;
+    }
+
     public long getId() {
         return id;
     }

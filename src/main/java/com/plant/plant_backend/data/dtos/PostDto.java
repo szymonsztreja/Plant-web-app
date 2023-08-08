@@ -7,27 +7,18 @@ import jakarta.persistence.ManyToOne;
 
 public class PostDto {
 
-    private long id;
     private AppUser author;
     private Plant plant;
     private String title;
     private String content;
 
-    public PostDto(long id, AppUser author, Plant plant, String title, String content) {
-        this.id = id;
+    public PostDto(AppUser author, Plant plant, String title, String content) {
         this.author = author;
         this.plant = plant;
         this.title = title;
         this.content = content;
     }
 
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
 
     public AppUser getAuthor() {
         return author;

@@ -28,7 +28,7 @@ public class PlantService{
     public List<PlantDto> findPlantsByOwnerId(Long id){
         return plantDao.findPlantsByOwnerId(id)
                 .stream()
-                .map( plant -> plantDTOMapper.map(plant))
+                .map(plantDTOMapper::map)
                 .collect(Collectors.toList());
     }
 
@@ -42,9 +42,7 @@ public class PlantService{
     public List<PlantDto> getAllPlants() {
         return plantDao.getAllPlants()
                 .stream()
-                .map( plant -> new PlantDto(
-                        plant.getName(),
-                        plant.getLatinName()))
+                .map(plantDTOMapper::map)
                 .collect(Collectors.toList());
     }
 
@@ -54,8 +52,8 @@ public class PlantService{
         }
 
         AppUser appUser = appUserDao.findById(ownerId).get();
-        plantDto.setOwner(appUser);
         Plant plant = plantDTOMapper.mapToEntity(plantDto);
+        plant.setOwner(appUser);
         plantDao.save(plant);
     }
 

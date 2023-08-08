@@ -1,6 +1,7 @@
 package com.plant.plant_backend;
 
 import com.plant.plant_backend.data.dtos.AppUserDto;
+import com.plant.plant_backend.requests.AppUserRegistrationRequest;
 import com.plant.plant_backend.services.AppUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,8 +26,8 @@ public class AppUserController {
     }
 
     @PostMapping("/")
-    public ResponseEntity<?> saveAppUser(@RequestBody AppUserDto appUserDto){
-        appUserService.save(appUserDto);
+    public ResponseEntity<?> saveAppUser(@RequestBody AppUserRegistrationRequest registrationRequest){
+        appUserService.save(registrationRequest);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

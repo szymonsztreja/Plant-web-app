@@ -17,8 +17,7 @@ public class Post {
     private String title;
     private String content;
 
-    public Post(long id, AppUser author, Plant plant, String title, String content) {
-        this.id = id;
+    public Post(AppUser author, Plant plant, String title, String content) {
         this.author = author;
         this.plant = plant;
         this.title = title;
